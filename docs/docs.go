@@ -1954,6 +1954,126 @@ var doc = `{
                 }
             }
         },
+        "/api/order/cancel": {
+            "post": {
+                "description": "取消订单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API.order"
+                ],
+                "summary": "取消订单",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/order.cancelRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/order.cancelResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/code.Failure"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order/create": {
+            "post": {
+                "description": "创建订单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API.order"
+                ],
+                "summary": "创建订单",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/order.createRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/order.createResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/code.Failure"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/order/{id}": {
+            "get": {
+                "description": "取消订单",
+                "consumes": [
+                    "application/x-www-form-urlencoded"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "API.order"
+                ],
+                "summary": "取消订单",
+                "parameters": [
+                    {
+                        "description": "请求信息",
+                        "name": "Request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/order.detailRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/order.detailResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/code.Failure"
+                        }
+                    }
+                }
+            }
+        },
         "/api/tool/cache/clear": {
             "patch": {
                 "security": [
@@ -3228,6 +3348,44 @@ var doc = `{
                     "type": "integer"
                 }
             }
+        },
+        "order.cancelRequest": {
+            "type": "object"
+        },
+        "order.cancelResponse": {
+            "type": "object"
+        },
+        "order.createRequest": {
+            "type": "object",
+            "required": [
+                "orderFee",
+                "orderNo"
+            ],
+            "properties": {
+                "orderFee": {
+                    "description": "订单金额(分)",
+                    "type": "integer"
+                },
+                "orderNo": {
+                    "description": "订单号",
+                    "type": "string"
+                }
+            }
+        },
+        "order.createResponse": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "description": "主键ID",
+                    "type": "integer"
+                }
+            }
+        },
+        "order.detailRequest": {
+            "type": "object"
+        },
+        "order.detailResponse": {
+            "type": "object"
         },
         "tool.dbData": {
             "type": "object",
